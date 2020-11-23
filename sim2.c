@@ -1,5 +1,5 @@
-// This code is to compare between between our privacy-preserving license plate
-// method to Vaishmav et al.
+// This code is to compare between between our privacy-preserving speaker recognition method
+// method to Treiber et al.
 
 //gcc -O3 sim2.c -lcrypto -pthread -lm
 //./a.out M threads_number
@@ -115,12 +115,10 @@ int main(int argc, char **argv)
 		pthread_join(tid[v], NULL);
 	gettimeofday(&end,NULL);
 
-	// printf("buf2[0]=%02X buf2[last]=%02X\n", buf2[0], buf2[2*random_buffer_size-1]);
+	printf("buf2[0]=%02X buf2[last]=%02X\n", buf2[0], buf2[2*random_buffer_size-1]);
 
-	// printf("M=\t%d\tcomp=\t%lf\tcomm=\t%d\tMB\n", M, print_time(&start, &end), comm_per_suspect*M);
 	printf("M=\t%d\tcomp=\t%lf\tcomm=\t%d\tMB\n", M, max_comp_time(total_elems_count), comm_per_suspect*M);
 	FILE *fptr = fopen("sim2_results.txt","a");
-	// fprintf(fptr, "M=\t%d\tcomp=\t%lf\tcomm=\t%d\tMB\n", M, print_time(&start, &end), comm_per_suspect*M);
 	fprintf(fptr, "M=\t%d\tcomp=\t%lf\tcomm=\t%d\tMB\n", M, max_comp_time(total_elems_count), comm_per_suspect*M);
 	fclose(fptr);
 }
